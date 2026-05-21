@@ -1,44 +1,46 @@
-# painting with AI
+# AI-Driven Urban Traffic Light Optimization
 
 Final project for the Building AI course
 
 ## Summary
 
-Briefly describe your project here. What does it do? What problem does it solve, and how does it use AI/machine learning to do so? 
+This project aims to optimize traffic light timings at busy city intersections using real-time traffic camera data. Instead of relying on fixed, outdated timers, this AI system dynamically adjusts green light durations based on the live queue length of vehicles, reducing gridlock and carbon emissions.
 
 ## Background
 
-* Which problem does your project solve? 
-* Why is this problem important or interesting?
-* What is your personal motivation?
+* **The Problem:** Traditional traffic lights operate on rigid schedules, causing empty lanes to have green lights while congested cross-streets sit idling. This wastes time, increases commuter frustration, and spikes fuel emissions.
+* **Importance:** Smart city infrastructure reduces urban congestion, improves emergency vehicle response times, and cuts down city-wide greenhouse gases.
+* **Motivation:** As cities grow denser, software solutions offer a much cheaper and faster way to improve infrastructure compared to physical road expansion.
 
 ## How it Works
 
-Explain how the AI or algorithm works in plain terms. For example:
-* What kind of data does it take as input?
-* What machine learning methods (e.g., linear regression, neural networks, k-NN) are used?
-* What does it output?
+The system operates in a continuous real-time loop:
+1. **Inputs:** Live camera frames from four-way intersections tracking vehicle counts per lane.
+2. **Processing:** A computer vision algorithm detects and counts the vehicles. 
+3. **Decision Matrix:** A lightweight heuristic/neural network takes the current vehicle counts and predicts the optimal next cycle duration ($T_{green}$) for each lane.
+4. **Output:** A precise duration signal sent directly to the electronic traffic light controllers.
 
-## Data Sources and AI Methods
+## AI Methods & Tech Stack
 
-Where does your data come from, or where *could* it come from? 
-* [Data Source 1](URL)
-* [Data Source 2](URL)
+This project maps out the usage of standard Python tools to simulate the environment:
 
-| Method | Tool / Library |
-| :--- | :--- |
-| Feature Extraction | NumPy / Scikit-learn |
-| Neural Network | Python Custom Forward Pass |
+| Phase | AI Method / Approach | Libraries used |
+| :--- | :--- | :--- |
+| **Object Detection** | Contour detection / CNNs | OpenCV / Scikit-image |
+| **Decision Logic** | Nearest Neighbor Classification (k-NN) | NumPy / Scikit-learn |
+| **Simulation** | Multi-agent traffic flow modelling | Matplotlib / Custom Loops |
 
 ## Challenges
 
-What are the limitations of your current project? What *can't* it do yet? What ethical or privacy considerations should be taken into account?
+* **Hardware Constraints:** Processing high-framerate video feeds at the edge (on the actual intersection controller) requires high computational efficiency.
+* **Edge Cases:** Handling extreme weather conditions (heavy snow, downpours, or night glare) where vehicle detection accuracy might drop.
+* **Safety:** Ensuring the AI can never override crucial safety gaps (like yellow light minimum durations or emergency vehicle overrides).
 
 ## What's Next?
 
-How could this project grow in the future? What skills or libraries (like PyTorch or TensorFlow) would you need to learn next to make it fully production-ready?
+Future iterations will move from isolated intersections to a **Networked Grid AI**, where multiple intersections communicate with one another to predict traffic waves before they arrive. To achieve this, the next step involves implementing Deep Q-Learning (Reinforcement Learning).
 
 ## Acknowledgments
 
-* List any inspirations, code bases you built upon, or open-source tutorials you used.
 * Elements of AI / Building AI course team.
+* Open-source traffic simulation concepts.
